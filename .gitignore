@@ -1,0 +1,15 @@
+# API keys / secrets
+config.py
+
+# Local data
+search_history.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
