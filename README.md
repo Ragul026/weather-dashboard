@@ -1,84 +1,107 @@
 # 🌦️ Weather Dashboard
 
-A Python weather dashboard that fetches live weather data and 5-day forecasts
-using the OpenWeatherMap API. Includes both a CLI version and an optional
-Streamlit GUI.
+A Python-based weather dashboard that displays current weather information and a 5-day forecast for any city using the OpenWeatherMap API.
 
-## Features
-- Current weather lookup by city name
-- 5-day forecast (simplified to one reading per day)
-- Local search history (saved to `search_history.json`)
-- Robust error handling (invalid city, bad API key, no internet, timeout)
-- Clean separation between API logic (`weather_api.py`) and UI logic (`main.py` / `streamlit_app.py`)
+## 🚀 Features
 
-## Tech Stack
-- Python 3
-- `requests` — for HTTP calls to the OpenWeatherMap REST API
-- `json` — for parsing API responses and storing local search history
-- `streamlit` + `pandas` — optional GUI and data table/chart display
+* Search weather by city name
+* Display current weather information
+* Show a 5-day weather forecast
+* Store recent search history
+* Handle invalid city names and API errors
+* CLI version for terminal usage
+* Streamlit GUI for a simple web interface
 
-## Setup
+## 🛠️ Technologies Used
 
-1. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+* Python
+* Requests
+* JSON
+* Streamlit
+* Pandas
+* OpenWeatherMap API
 
-2. **Get a free API key**
-   - Sign up at https://openweathermap.org/api
-   - Copy your API key from "My API Keys"
-   - Paste it into `config.py`:
-     ```python
-     API_KEY = "your_key_here"
-     ```
-   - Note: new keys can take 10–15 minutes to activate.
+## 📂 Project Structure
 
-3. **Run the CLI version**
-   ```bash
-   python main.py
-   ```
-
-4. **Run the GUI version (optional)**
-   ```bash
-   streamlit run streamlit_app.py
-   ```
-
-## Project Structure
-```
-weather_dashboard/
-├── config.py           # API key & settings
-├── weather_api.py       # All API calls + parsing + custom exceptions
-├── main.py               # CLI application (menu-driven)
-├── streamlit_app.py      # Optional GUI version
+```text
+weather-dashboard/
+│
+├── main.py
+├── weather_api.py
+├── streamlit_app.py
+├── config.example.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
-## How It Works
-1. User enters a city name.
-2. `weather_api.py` builds a request to OpenWeatherMap's `/weather` or
-   `/forecast` endpoint with the city and API key as query parameters.
-3. The raw JSON response is parsed down to only the fields the app needs.
-4. Errors (invalid city, bad key, network issues) are caught and raised as
-   a custom `WeatherAPIError` so the calling code can display a clean message
-   instead of crashing.
-5. Each successful search is logged to `search_history.json` with a timestamp.
+## ⚙️ Installation
 
-## Possible Extensions (good to mention in an interview as "future work")
-- Cache responses (e.g. with `functools.lru_cache` or Redis) to reduce API calls
-- Add unit tests with `pytest` + `unittest.mock` for the API layer
-- Support multiple cities in one view (comparison dashboard)
-- Add a database (SQLite) instead of JSON for search history
-- Deploy the Streamlit app (Streamlit Community Cloud / Render) for a live demo link
+### 1. Clone the repository
 
-## Interview Talking Points
-- **Why `requests`?** Simple, widely-used HTTP library; handles query params,
-  timeouts, and status codes cleanly.
-- **Why a custom exception (`WeatherAPIError`)?** Keeps error handling
-  consistent and lets the UI layer catch one exception type instead of
-  guessing what could go wrong.
-- **Why separate `weather_api.py` from `main.py`?** Separation of concerns —
-  the API layer could be reused by a CLI, a GUI, or a Flask backend without
-  changes.
-- **How would you scale this?** Add caching, rate-limit handling, and swap
-  JSON file storage for a real database.
+```bash
+git clone https://github.com/Ragul026/weather-dashboard.git
+cd weather-dashboard
+```
+
+### 2. Install required packages
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure the API key
+
+Create a `config.py` file and add your OpenWeatherMap API key:
+
+```python
+API_KEY = "your_api_key_here"
+```
+
+Keep your API key private and do not upload `config.py` to GitHub.
+
+## ▶️ Run the Project
+
+### Command Line Version
+
+```bash
+python main.py
+```
+
+### Streamlit Version
+
+```bash
+streamlit run streamlit_app.py
+```
+
+## 🔄 How It Works
+
+1. The user enters a city name.
+2. The application sends a request to the OpenWeatherMap API.
+3. The API returns weather information in JSON format.
+4. Python processes the required weather data.
+5. The application displays the current weather and forecast.
+6. Successful searches are stored in the search history.
+
+## 📸 Project Preview
+
+*Add screenshots of the working application here.*
+
+## 📌 Learning Outcomes
+
+Through this project, I practiced:
+
+* Working with REST APIs
+* Sending HTTP requests using Python
+* Processing JSON data
+* Handling errors and exceptions
+* Working with Python modules
+* Building a simple Streamlit application
+* Using Git and GitHub for project management
+
+## 🔮 Future Improvements
+
+* Add weather charts
+* Compare weather between multiple cities
+* Add a database for search history
+* Deploy the application online
